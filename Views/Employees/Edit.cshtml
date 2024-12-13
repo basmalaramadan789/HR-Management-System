@@ -1,0 +1,52 @@
+﻿@model WebApplication1.DTOs.EditEmployeeDTO
+
+<h2>Edit Employee</h2>
+
+<div class="border-3 border-primary rounded-3 p-5">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label>First Name</label>
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Last Name</label>
+            <input asp-for="LastName" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Date of Birth</label>
+            <input asp-for="DateOfBirth" class="form-control" type="date" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Address</label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Salary</label>
+            <input asp-for="Salary" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Department</label>
+            <select asp-for="DepartmentId" class="form-control" asp-items="@(new SelectList(ViewBag.Departments, "Id", "Name", Model.DepartmentId))">
+                <option value="">Select Department</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label>Position</label>
+            <select asp-for="PositionId" class="form-control" asp-items="@(new SelectList(ViewBag.Positions, "Id", "Title", Model.PositionId))">
+                <option value="">Select Position</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    </form>
+</div>

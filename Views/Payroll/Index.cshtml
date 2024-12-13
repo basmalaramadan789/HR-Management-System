@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebApplication1.Models.Payroll>
+
+<h1>Payroll List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Employee</th>
+            <th>Payment Date</th>
+            <th>Gross Amount</th>
+            <th>Tax Amount</th>
+            <th>Net Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payroll in Model)
+        {
+            <tr>
+                <td>@payroll.Id</td>
+                <td>@payroll.Employee.FirstName @payroll.Employee.LastName</td>
+                <td>@payroll.PaymentDate.ToShortDateString()</td>
+                <td>@payroll.GrossAmount</td>
+                <td>@payroll.TaxAmount</td>
+                <td>@payroll.NetAmount</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@payroll.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@payroll.Id">Delete</a> |
+                    <a asp-action="Details" asp-route-id="@payroll.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create">Create New</a>

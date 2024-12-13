@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.Position>
+
+<h2>Positions</h2>
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-success">Create New Position</a>
+</p>
+
+<table class="table rounded-2">
+    <thead class="thead-dark bg-dark text-white border rounded-2">
+        <tr>
+            <th class="col">Title</th>
+            <th class="col">Description</th>
+            <th class="col">Base Salary</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.BaseSalary</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-warning">Edit</a> |
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-sm btn-info">Details</a> |
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

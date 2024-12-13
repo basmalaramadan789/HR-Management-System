@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication1.Models.Department>
+
+<h1>Departments</h1>
+
+
+<a href="@Url.Action("Create")" class="btn btn-success mb-3">
+    Create New Department
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle ms-1" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+    </svg>
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>@department.Id</td>
+                <td>@department.Name</td>
+                <td class="" style="width:70%">@department.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@department.Id" class="btn btn-info">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@department.Id" class="btn btn-danger">Delete</a> |
+                    <a asp-action="Details" asp-route-id="@department.Id" class="btn btn-success">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

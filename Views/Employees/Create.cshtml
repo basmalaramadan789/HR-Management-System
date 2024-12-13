@@ -1,0 +1,115 @@
+﻿@model WebApplication1.DTOs.CreateEmployeeDTO
+
+
+<h2>Create Employee</h2>
+
+
+<div class="border-3 border-primary rounded-3 p-5">
+
+    <form asp-action="Create" method="post" >
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group mb-3 ">
+            <label asp-for="FirstName">First Name</label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label>Last Name</label>
+            <input asp-for="LastName" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Date of Birth</label>
+            <input type="date" asp-for="DateOfBirth" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Address</label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Salary</label>
+            <input asp-for="Salary" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Department</label>
+            <select asp-for="DepartmentId" class="form-control">
+                <option value="">Select Department</option>
+                @foreach (var department in ViewBag.Departments)
+                {
+                    <option value="@department.Id">
+                         @department.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Position</label>
+            <select asp-for="PositionId" class="form-control">
+                <option value="">Select Position</option>
+                @foreach (var position in ViewBag.Positions)
+                {
+                    <option value="@position.Id">
+                        @position.Id - @position.Title
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Hire Date</label>
+            <input type="date" asp-for="HireDate"  class="form-control" id="hireDate" />
+        </div>
+        <div class="form-group form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="isHireToday" />
+            <label class="form-check-label" for="isHireToday">Hire Date is Today</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Create</button>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        $(document).ready(function () {
+            // Set Hire Date to today's date and disable the field if the checkbox is checked
+            $('#isHireToday').change(function () {
+                if (this.checked) {
+                    var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+                    console.log(today)
+                    $('#hireDate').val(today);
+                    $('#hireDate').prop('disabled', true); // Set value and disable the field
+                } else {
+                    $('#hireDate').val('').prop('disabled', false); // Clear value and enable the field
+                }
+            });
+
+            // Form validation
+            $("form").submit(function (event) {
+                var isValid = true;
+                $("input").each(function () {
+                    if ($(this).val() === "") {
+                        $(this).addClass("is-invalid");
+                        isValid = false;
+                    } else {
+                        $(this).removeClass("is-invalid");
+                    }
+                });
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+}

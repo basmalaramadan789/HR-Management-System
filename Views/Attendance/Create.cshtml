@@ -1,0 +1,92 @@
+﻿@* @using WebApplication1.ViewModel
+@model AttendanceViewModel
+
+
+@{
+    ViewData["Title"] = "Create Attendance";
+}
+
+<h2>Create Attendance</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="EmployeeId" class="control-label">Employee</label>
+        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-control">
+            <option value="">-- Select Employee --</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckInTime" class="control-label"></label>
+        <input asp-for="CheckInTime" class="form-control" />
+        <span asp-validation-for="CheckInTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckOutTime" class="control-label"></label>
+        <input asp-for="CheckOutTime" class="form-control" />
+        <span asp-validation-for="CheckOutTime" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="IsAbsent" /> @Html.DisplayNameFor(model => model.IsAbsent)
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+
+
+
+@using WebApplication1.ViewModel
+@model AttendanceViewModel
+
+@{
+    ViewData["Title"] = "Create Attendance";
+}
+
+<h1>Create Attendance</h1>
+
+<form asp-action="Create" class="p-4 border border-2 rounded">
+    <div class="form-group mb-3">
+        <label asp-for="EmployeeId" class="control-label">Employee</label>
+        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-control">
+            <option value="">-- Select an Employee --</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CheckInTime" class="control-label">Check-In Time</label>
+        <input asp-for="CheckInTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="CheckInTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CheckOutTime" class="control-label">Check-Out Time</label>
+        <input asp-for="CheckOutTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="CheckOutTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check mb-3">
+        <input class="form-check-input" asp-for="IsAbsent" />
+        <label class="form-check-label" asp-for="IsAbsent">Mark as Absent</label>
+    </div>
+
+    <div class="d-flex justify-content-between h-auto">
+        <button type="submit" class="btn btn-success">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
