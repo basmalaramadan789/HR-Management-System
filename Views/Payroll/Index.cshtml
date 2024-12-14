@@ -1,9 +1,20 @@
 ﻿@model IEnumerable<WebApplication1.Models.Payroll>
+@{
+    ViewBag.Title = "Payroll List";
+}
 
-<h1>Payroll List</h1>
+<h2>Payroll List</h2>
 
-<table class="table">
-    <thead>
+<a href="@Url.Action("Create")" class="btn btn-success mb-3">
+    Create New Payroll
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle ms-1" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+    </svg>
+</a>
+
+<table class="table table-striped border border-2 border-dark rounded-3">
+    <thead class="bg-dark text-white">
         <tr>
             <th>Id</th>
             <th>Employee</th>
@@ -25,13 +36,11 @@
                 <td>@payroll.TaxAmount</td>
                 <td>@payroll.NetAmount</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@payroll.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@payroll.Id">Delete</a> |
-                    <a asp-action="Details" asp-route-id="@payroll.Id">Details</a>
+                    <a asp-action="Edit" asp-route-id="@payroll.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@payroll.Id" class="btn btn-success">Details</a>
+                    <a asp-action="Delete" asp-route-id="@payroll.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-<a asp-action="Create">Create New</a>

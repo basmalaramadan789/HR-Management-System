@@ -1,0 +1,18 @@
+﻿@model WebApplication1.Models.Attendance
+
+<h2>Attendance Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Attendance ID: @Model.Id</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Employee:</strong> @Model.Employee.FirstName @Model.Employee.LastName</p>
+        <p><strong>Check-In Time:</strong> @Model.CheckInTime</p>
+        <p><strong>Check-Out Time:</strong> @Model.CheckOutTime</p>
+        <p><strong>Is Absent:</strong> @(Model.IsAbsent ? "Yes" : "No")</p>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</div>

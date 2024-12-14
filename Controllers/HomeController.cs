@@ -68,50 +68,37 @@ namespace WebApplication1.Controllers
 
 
 
+            // Define the late threshold time (7:00 AM)
+            TimeSpan lateThreshold = new TimeSpan(7, 0, 0);
+
+            // Get today's date
+            DateTime today = DateTime.Today;
+
+            // Retrieve the number of late employees today
+            var lateEmployeeCount = _context.Attendances
+                .Where(a => a.CheckInTime.Date == today && a.CheckInTime.TimeOfDay > lateThreshold)
+                .Count();
+
+            
+            var absentEmployeeCount = _context.Attendances
+                .Where(a => a.IsAbsent && a.CheckInTime.Date == today)
+                .Count();
+
+           
+            ViewBag.LateEmployeeCount = lateEmployeeCount;
+            ViewBag.AbsentEmployeeCount = absentEmployeeCount;
+
+
+
             return View(departments);
         }
 
-        //public IActionResult Index()
-        //{
-        //    var departments = _context.Departments
-        //        .Include(d => d.Employees)
-        //        .Select(d => new DepartmentViewModel
-        //        {
-        //            Name = d.Name,
-        //            EmployeeCount = d.Employees.Count()
-        //        })
-        //        .ToList();
-
-            ////    // Existing ViewBag values
-            ////    ViewBag.EmployeeCount = _context.Employees.Count();
-            ////    ViewBag.DepartmentCount = _context.Departments.Count();
-            ////    ViewBag.PositionCount = _context.Positions.Count();
-
-            ////    // New data for charts
-            ////    ViewBag.LastMonthPayroll = _context.Payrolls
-            ////        .Where(p => p.PaymentDate.Month == DateTime.Now.AddMonths(-1).Month && p.PaymentDate.Year == DateTime.Now.Year)
-            ////        .Sum(p => p.NetAmount);
-
-            ////    ViewBag.TopEmployees = _context.Employees
-            ////        .OrderByDescending(e => e.Salary)
-            ////        .Take(5)
-            ////        .Select(e => new { Name = e.FirstName + " " + e.LastName, e.Salary })
-            ////        .ToList();
-
-            ////    ViewBag.TopDepartment = _context.Departments
-            ////        .Select(d => new { d.Name, EmployeeCount = d.Employees.Count() })
-            ////        .OrderByDescending(d => d.EmployeeCount)
-            ////        .FirstOrDefault();
-
-            ////    return View(departments);
-            ////}
+     
+              
 
 
 
-
-
-
-            public IActionResult Privacy()
+        public IActionResult Privacy()
         {
             return View();
         }
@@ -121,5 +108,9 @@ namespace WebApplication1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+
     }
 }

@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Register Completed</title>
+    
+    <style>
+        /* styles.css */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fff; /* White background */
+            color: #333; /* Dark gray text */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .message-card {
+            text-align: center;
+            background: #f9f9f9; /* Light gray background for the card */
+            border: 1px solid #e0e0e0; /* Soft border */
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+            .message-card:hover {
+                transform: translateY(-5px); /* Subtle lift effect on hover */
+            }
+
+            .message-card h1 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                color: #333; /* Dark gray for the heading */
+            }
+
+            .message-card p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                color: #555; /* Slightly lighter gray for the paragraph */
+                line-height: 1.6;
+            }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff; /* White text for the button */
+            background: #333; /* Dark gray button */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+            .btn:hover {
+                background: #555; /* Lighter gray on hover */
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-card">
+            <h1>✔ Attendance Recorded Successfully!</h1>
+            <p>Your attendance has been recorded. Have a wonderful day!</p>
+            <a href="#" class="btn">Thanks</a>
+        </div>
+    </div>
+</body>
+</html>

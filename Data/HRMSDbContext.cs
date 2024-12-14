@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using WebApplication1.Models;
 
 namespace WebApplication1.Data
 {
-    public class HRMSDbContext : DbContext
+    public class HRMSDbContext : IdentityDbContext<ApplicationUser>
     {
         public HRMSDbContext(DbContextOptions<HRMSDbContext> options) : base(options) { }
 

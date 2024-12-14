@@ -45,7 +45,12 @@
                     }
                 </td>
                 <td>
-                    @if (attendance.CheckInTime.TimeOfDay <= new TimeSpan(7, 0, 0))
+                    @if (attendance.IsAbsent)
+                    {
+                        <!-- Display a dash (-) in black for absent employees -->
+                        <span class="badge-absent">—</span>
+                    }
+                    else if (attendance.CheckInTime.TimeOfDay <= new TimeSpan(7, 0, 0))
                     {
                         <span class="badge-on-time" data-toggle="tooltip" title="Employee arrived on time">On Time</span>
                     }
@@ -54,9 +59,10 @@
                         <span class="badge-late" data-toggle="tooltip" title="Employee arrived late">Late</span>
                     }
                 </td>
+
                 <td>
                     <!-- Edit Button -->
-                    <a asp-action="Edit" asp-route-id="@attendance.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@attendance.Id" class="btn btn-warning">Details</a>
 
                     <!-- Delete Button -->
                     <a asp-action="Delete" asp-route-id="@attendance.Id" class="btn btn-danger">Delete</a>
